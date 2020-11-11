@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration status="info">
+    <!-- layout -->
+    <Properties>
+        <Property name="layout">%d [%t] %-5level %logger{36} - %m%n</Property>
+    </Properties>
+   
+    <!--  appenders ==> mention destination -->
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="${layout}" />
+        </Console>
+          
+        <RollingFile name="MyFile" fileName="c:\mylog.log" filePattern="app.%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${layout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size = "1 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>              
+    </Appenders>
+    <Loggers>
+        <Logger name="com.cybage" level="info" additivity="false">
+            <AppenderRef ref="MyFile" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>   
+    </Loggers>
+</Configuration>
+ 

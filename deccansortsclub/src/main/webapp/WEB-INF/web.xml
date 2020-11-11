@@ -1,0 +1,102 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>Admin</servlet-name>
+  	<display-name>Admin</display-name>
+  	<description></description>
+  	<servlet-class>com.cybage.servlet.Admin</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Manager</servlet-name>
+  	<display-name>Manager</display-name>
+  	<description></description>
+  	<servlet-class>com.cybage.servlet.Manager</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminServlet</servlet-name>
+  	<display-name>AdminServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cybage.servlet.AdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CustomerServlet</servlet-name>
+  	<display-name>CustomerServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cybage.servlet.CustomerServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AppController</servlet-name>
+  	<display-name>AppController</display-name>
+  	<description></description>
+  	<servlet-class>com.cybage.servlet.AppController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admin</servlet-name>
+  	<url-pattern>/Admin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Manager</servlet-name>
+  	<url-pattern>/Manager/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminServlet</servlet-name>
+  	<url-pattern>/AdminServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerServlet</servlet-name>
+  	<url-pattern>/CustomerServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AppController</servlet-name>
+  	<url-pattern>/AppController</url-pattern>
+  </servlet-mapping>
+   <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>SecuredBookSite</web-resource-name>
+			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>Let only admin use this app</description>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>SecuredBookSite</web-resource-name>
+			<url-pattern>/member/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>Let only customer use this app</description>
+			<role-name>member</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>SecuredBookSite</web-resource-name>
+			<url-pattern>/manager/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>Let only managers use this app</description>
+			<role-name>manager</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/error.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+	
+	 <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error.jsp</location>
+    </error-page>
+</web-app>
